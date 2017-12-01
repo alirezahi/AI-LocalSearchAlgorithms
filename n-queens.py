@@ -23,7 +23,7 @@ class Problem():
     def is_goal(self,state):
         return self.heuristic(state) == 0
 
-from HC import *
+from HillClimbing import *
 p = Problem()
 a = HillClimbing(p)
-a.solve()
+a.solve(algorithm_type='first-choice')
