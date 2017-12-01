@@ -17,7 +17,7 @@ class HillClimbing():
                 best_neighbour_node = min(neighbour_nodes, key=lambda x: self.problem.heuristic(x))
             if algorithm_type == 'stochastic':
                 best_neighbour_node = random.choice(list(filter(lambda x : self.problem.heuristic(x) < self.problem.heuristic(current_state),neighbour_nodes)) or [current_state])
-            if algorithm_type == 'first_choice':
+            if algorithm_type == 'first-choice':
                 best_neighbour_node = (list(filter(lambda x: self.problem.heuristic(x) < self.problem.heuristic(current_state), neighbour_nodes)) or [current_state])[0]
             attempts -= 1
             if self.problem.heuristic(best_neighbour_node) < self.problem.heuristic(current_state):
@@ -34,5 +34,4 @@ class HillClimbing():
                     else:
                         current_state = min(random_results,key=lambda x : x[1])[0]
                         best_found = True
-        print(self.problem.is_goal(current_state))
         print(current_state)
