@@ -20,7 +20,7 @@ class HillClimbing():
             if algorithm_type == 'first-choice':
                 best_neighbour_node = (list(filter(lambda x: self.problem.heuristic(x) < self.problem.heuristic(current_state), neighbour_nodes)) or [current_state])[0]
             attempts -= 1
-            if self.problem.heuristic(best_neighbour_node) < self.problem.heuristic(current_state):
+            if self.problem.heuristic(best_neighbour_node) <= self.problem.heuristic(current_state):
                 current_state = best_neighbour_node
             if self.problem.is_goal(current_state) or attempts < 0:
                 best_found = True
