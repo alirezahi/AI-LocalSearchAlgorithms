@@ -13,6 +13,7 @@ class SimulatedAnnealing():
         sch = 0.99
         t_min = 1
         while temperature > t_min:
+            print(current_state)
             random_neighbour = random.choice(self.problem.neighbours(current_state))
             efficiency = self.problem.heuristic(random_neighbour) - self.problem.heuristic(current_state)
             #Replace new state if it is better than older one
