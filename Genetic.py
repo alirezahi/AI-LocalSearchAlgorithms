@@ -1,7 +1,7 @@
 from __future__ import division
 import random
 class Genetic():
-    def __init__(self,problem,generation_population=100,pc=25,pm=10, *args, **kwargs):
+    def __init__(self,problem,generation_population=10,pc=25,pm=10, *args, **kwargs):
         self.problem = problem
         self.generation_population = generation_population
         self.pc = 25
@@ -12,18 +12,27 @@ class Genetic():
         chromosomes = [self.problem.initial_state() for i in range(self.generation_population)]
         ideal_situtaion = False
         evaluated = [self.problem.heuristic(eval_num) for eval_num in chromosomes]
-        alireza = 0
+        generation_number = 0
         while True:
-            alireza += 1
+            generation_number += 1
             #Evaluation
             evaluated = [abs(self.problem.heuristic(eval_num)) for eval_num in chromosomes]
+
+            #Print Situation of each Generation
+            print('\t-- New Generation --')
+            print('Best of the Generation ==> ' + str(min(evaluated)))
+            print('Worst of the Generation ==> ' + str(max(evaluated)))
+            print('Average of Generation ==> ' + str(sum(evaluated)/len(evaluated)))
+
+            #Check Goal State
             if 0 in evaluated:
                 break
 
+            
+
             #Selection
-            print(evaluated)
+            print(chromosomes)
             fitness = [1/(1+eval_num) for eval_num in evaluated]
-            print(fitness)
             total = sum(fitness)
             probability = [fitness_item/total for fitness_item in fitness]
             cumulative_probability = [sum(probability[:i]) for i in range(1,self.generation_population+1)]
@@ -55,5 +64,5 @@ class Genetic():
                 num_gen = random.randint(0,3)
                 chromosomes[num_chromosome][num_gen] = self.problem.rand_gen(gen_num=num_gen)
         print(chromosomes)
-        print(alireza)
+        print('Number of Generations = ' + str(generation_number))
 
